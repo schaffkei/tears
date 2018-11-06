@@ -45,3 +45,17 @@ fi
 
 eval yum install -y $cloudera_packages
 
+
+# Install the mysql client (must NOT install from RPM, according to Cloudera installation
+# guide
+jarlibdir=/usr/share/java
+mysql_jar=mysql-connector-java.jar
+if [ ! -e $jarlibdir/$mysql_jar ]
+then
+	echo "Installing the mysql client jar file"
+	mkdir -p $jarlibdir
+	cd $jarlibdir
+	curl -s -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.47.tar.gz | tar xzf - --strip-components=1 mysql-connector-java\*-bin.jar
+	ln -snf $(ls -t mysql-connector-java*-bin.jar | head -n 1) $mysql_jar
+fi
+
