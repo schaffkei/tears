@@ -13,6 +13,16 @@ has_role()
 	fi
 }
 
+get_sensitive()
+{
+	key="$1"
+	if [ -n "$key" ]
+	then
+		aws ssm get-parameters --region us-east-1 --names "$key" --with-decryption --query Parameters[0].Value --output text
+	fi
+}
+
+
 
 update_file()
 {
@@ -25,6 +35,19 @@ update_file()
 	fi
 }
 
+
+completed_log_dir=/etc/nomrtears/.completed
+mkdir -p $completed_log_dir
+is_completed()
+{
+	component="$1"
+	[ -e "$completed_log_dir/$component" ] && return 0 || return 1
+}
+mark_completed()
+{
+	component="$1"
+	date >> "$completeded_log_dir/$component"
+}
 
 deploy_modules()
 {

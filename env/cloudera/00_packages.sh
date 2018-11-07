@@ -21,7 +21,7 @@ then
 
 	cd /tmp
 	wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u191-b12/2787e4a523244c269598db4e85c51e0c/jdk-8u191-linux-x64.rpm"
-	yum localinstall jdk-8u191-linux-x64.rpm
+	yum localinstall -y jdk-8u191-linux-x64.rpm
 
 	# It looks like Unlimited JCE is on by default
 	# yum install -y unzip

@@ -6,7 +6,7 @@ if ! which aws >/dev/null 2>&1
 then
 	if ! which pip >/dev/null 2>&1
 	then
-		curl -O https://bootstrap.pypa.io/get-pip.py | python
+		curl -s https://bootstrap.pypa.io/get-pip.py | python
 	fi
 
 	pip install awscli
